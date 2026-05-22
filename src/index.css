@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-navy-dark text-white font-sans antialiased;
+  }
+  
+  * {
+    @apply border-border;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-glass-light backdrop-blur-xl border border-glass-border;
+  }
+  
+  .glass-dark {
+    @apply bg-glass-dark backdrop-blur-xl border border-glass-border;
+  }
+  
+  .glass-card {
+    @apply glass rounded-2xl shadow-2xl;
+  }
+  
+  .neon-glow {
+    box-shadow: 0 0 20px rgba(22, 163, 74, 0.5), 0 0 40px rgba(22, 163, 74, 0.3);
+  }
+  
+  .neon-glow-blue {
+    box-shadow: 0 0 20px rgba(10, 31, 68, 0.8), 0 0 40px rgba(10, 31, 68, 0.5);
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-white via-green-light to-green bg-clip-text text-transparent;
+  }
+  
+  .bg-gradient-animated {
+    background: linear-gradient(-45deg, #0A1F44, #16A34A, #0A1F44, #1a3a6e);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
