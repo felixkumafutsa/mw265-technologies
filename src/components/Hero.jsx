@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Smartphone, Laptop } from 'lucide-react';
-import Logo from './Logo';
 
 const Hero = () => {
   return (
@@ -14,15 +13,6 @@ const Hero = () => {
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-navy-light/20 rounded-full blur-3xl animate-pulse-slow" />
       
       <div className="relative z-10 max-w-7xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-8"
-        >
-          <Logo size="xl" />
-        </motion.div>
-
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -68,29 +58,6 @@ const Hero = () => {
           </motion.button>
         </motion.div>
 
-        {/* Featured Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="mt-16 flex justify-center"
-        >
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            className="glass-card p-4 rounded-3xl overflow-hidden"
-          >
-            <img 
-              src="/mw265%20image.png" 
-              alt="MW265 Technologies Showcase" 
-              className="w-full max-w-2xl h-auto rounded-2xl object-cover"
-              onError={(e) => {
-                console.log('Image failed to load, trying URL encoded path');
-                e.target.src = '/mw265%20image.png';
-              }}
-            />
-          </motion.div>
-        </motion.div>
       </div>
 
       {/* Scroll indicator */}
