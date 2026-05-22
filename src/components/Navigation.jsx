@@ -39,7 +39,7 @@ const Navigation = () => {
             className="flex items-center gap-3"
           >
             <Logo size="lg" />
-            <span className="text-xl font-bold text-white">MW265</span>
+            <span className="text-xl font-bold text-white">MW265 Technologies</span>
           </motion.div>
 
           {/* Desktop Navigation */}
