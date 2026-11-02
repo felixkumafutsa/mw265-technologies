@@ -55,14 +55,6 @@ const Navigation = ({ onGetStarted }) => {
                 {link.name}
               </motion.a>
             ))}
-            <motion.a
-              href="/portfolio"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-full transition-all"
-            >
-              Portfolio
-            </motion.a>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -103,13 +95,6 @@ const Navigation = ({ onGetStarted }) => {
                   {link.name}
                 </a>
               ))}
-              <a 
-                href="/portfolio"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-full transition-all text-center"
-              >
-                Portfolio
-              </a>
               <button 
                 onClick={() => {
                   onGetStarted();
