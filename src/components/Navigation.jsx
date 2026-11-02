@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
 
-const Navigation = () => {
+const Navigation = ({ onGetStarted }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -39,7 +39,7 @@ const Navigation = () => {
             className="flex items-center gap-3"
           >
             <Logo size="lg" />
-            <span className="text-xl font-bold text-white">MW265 Technologies</span>
+            <span className="text-xl font-bold text-white">SpenFel Digital Systems</span>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -55,9 +55,18 @@ const Navigation = () => {
                 {link.name}
               </motion.a>
             ))}
+            <motion.a
+              href="/portfolio"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-full transition-all"
+            >
+              Portfolio
+            </motion.a>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={onGetStarted}
               className="px-6 py-2 bg-green hover:bg-green-light text-white font-semibold rounded-full neon-glow transition-all"
             >
               Get Started
@@ -94,7 +103,20 @@ const Navigation = () => {
                   {link.name}
                 </a>
               ))}
-              <button className="px-6 py-3 bg-green hover:bg-green-light text-white font-semibold rounded-full neon-glow transition-all">
+              <a 
+                href="/portfolio"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-full transition-all text-center"
+              >
+                Portfolio
+              </a>
+              <button 
+                onClick={() => {
+                  onGetStarted();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="px-6 py-3 bg-green hover:bg-green-light text-white font-semibold rounded-full neon-glow transition-all"
+              >
                 Get Started
               </button>
             </div>

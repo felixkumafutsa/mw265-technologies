@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -9,9 +10,27 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Navigation from './components/Navigation';
 import ParticleBackground from './components/ParticleBackground';
+import RegistrationModal from './components/RegistrationModal';
 
-function App() {
+// Portfolio imports
+import PortfolioNav from './portfolio/components/Navigation';
+import PortfolioHero from './portfolio/sections/Hero';
+import PortfolioAbout from './portfolio/sections/About';
+import PortfolioSkills from './portfolio/sections/Skills';
+import PortfolioProjects from './portfolio/sections/Projects';
+import PortfolioExperience from './portfolio/sections/Experience';
+import PortfolioContact from './portfolio/sections/Contact';
+import PortfolioFooter from './portfolio/components/Footer';
+import Blog from './portfolio/sections/Blog';
+import BlogPost from './portfolio/components/BlogPost';
+
+function CorporateSite() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleGetStarted = () => {
+    setIsModalOpen(true);
+  };
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -28,7 +47,8 @@ function App() {
   return (
     <div className="min-h-screen bg-navy-dark overflow-x-hidden">
       <ParticleBackground />
-      <Navigation />
+      <Navigation onGetStarted={handleGetStarted} />
+      <RegistrationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       
       <motion.div
         style={{
@@ -36,7 +56,7 @@ function App() {
         }}
         transition={{ type: 'spring', stiffness: 100, damping: 30 }}
       >
-        <Hero />
+        <Hero onGetStarted={handleGetStarted} />
       </motion.div>
       
       <About />
@@ -46,6 +66,55 @@ function App() {
       <Contact />
       <Footer />
     </div>
+  );
+}
+
+function PortfolioSite() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === '/portfolio' && location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
+
+  return (
+    <div className="min-h-screen bg-dark flex flex-col">
+      <PortfolioNav />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={
+            <>
+              <PortfolioHero />
+              <PortfolioAbout />
+              <PortfolioSkills />
+              <PortfolioProjects />
+              <PortfolioExperience />
+              <PortfolioContact />
+            </>
+          } />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+        </Routes>
+      </main>
+      <PortfolioFooter />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<CorporateSite />} />
+        <Route path="/portfolio/*" element={<PortfolioSite />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -56,7 +56,7 @@ const WhyChooseUs = () => {
             Why Choose Us
           </h2>
           <p className="text-xl text-white/80">
-            The MW265 advantage for your technology needs
+            The SpenFel advantage for your technology needs
           </p>
         </motion.div>
 

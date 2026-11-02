@@ -1,6 +1,6 @@
-# MW265 Technologies Website
+# SpenFel Digital Systems Website
 
-A modern premium glassmorphic corporate website for MW265 Technologies, a Malawi-based technology startup.
+A modern premium glassmorphic corporate website for SpenFel Digital Systems, a Malawi-based technology startup.
 
 ## Features
 
@@ -47,6 +47,19 @@ npm run build
 ```
 
 The built files will be in the `dist` directory.
+
+## Deploy to Vercel
+
+**Production site**: https://spenfel-digital-systems.vercel.app
+
+Import this repository in Vercel and use the following project settings:
+
+- **Framework Preset**: Vite
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- **Install Command**: `npm install`
+
+The `vercel.json` rewrite supports direct visits and refreshes on client-side routes such as `/portfolio/blog`. No Vercel environment variables are required for the static site.
 
 ## Project Structure
 

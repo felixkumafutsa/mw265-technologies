@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Smartphone, Laptop } from 'lucide-react';
 
-const Hero = () => {
+const Hero = ({ onGetStarted }) => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 pt-20 overflow-hidden">
       {/* Animated gradient background */}
@@ -32,7 +32,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto mb-12"
         >
-          MW265 Technologies builds digital solutions for businesses, schools, startups and institutions in Malawi and beyond.
+          SpenFel Digital Systems builds digital solutions for businesses, schools, startups and institutions in Malawi and beyond.
         </motion.p>
 
         <motion.div
@@ -44,6 +44,7 @@ const Hero = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={onGetStarted}
             className="px-8 py-4 bg-green hover:bg-green-light text-white font-bold rounded-full neon-glow transition-all flex items-center gap-2"
           >
             Get Started

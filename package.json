@@ -1,7 +1,7 @@
 {
-  "name": "mw265-website",
+  "name": "spenfel-digital-systems",
   "version": "1.0.0",
-  "description": "Modern premium glassmorphic corporate website for MW265 Technologies",
+  "description": "SpenFel Digital Systems - Smart Solutions. Powerful Technology. Real Impact.",
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,7 +13,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "framer-motion": "^10.16.4",
-    "lucide-react": "^0.294.0"
+    "lucide-react": "^0.294.0",
+    "react-router-dom": "^7.13.1",
+    "@emailjs/browser": "^4.4.1",
+    "react-icons": "^5.6.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

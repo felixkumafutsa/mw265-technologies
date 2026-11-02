@@ -1,0 +1,61 @@
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import Navigation from './components/Navigation';
+import Hero from './sections/Hero';
+import About from './sections/About';
+import Skills from './sections/Skills';
+import Projects from './sections/Projects';
+import Experience from './sections/Experience';
+import Contact from './sections/Contact';
+import Footer from './components/Footer';
+import Blog from './sections/Blog';
+import BlogPost from './components/BlogPost';
+
+function AppContent() {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Handle direct navigation to sections
+    if (location.pathname === '/' && location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
+
+  return (
+    <div className="min-h-screen bg-dark flex flex-col">
+      <Navigation />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Hero />
+              <About />
+              <Skills />
+              <Projects />
+              <Experience />
+              <Contact />
+            </>
+          } />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+}
+
+export default App

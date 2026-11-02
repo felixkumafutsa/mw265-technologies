@@ -2,27 +2,30 @@ import React from 'react';
 
 const Logo = ({ size = 'md' }) => {
   const sizeClasses = {
-    sm: 'w-8 h-8',
-    md: 'w-10 h-10',
-    lg: 'w-12 h-12',
-    xl: 'w-16 h-16',
+    sm: 'h-8',
+    md: 'h-10',
+    lg: 'h-12',
+    xl: 'h-16',
   };
+
+  const height = sizeClasses[size] || sizeClasses.md;
 
   // Fallback SVG in case image fails to load
   const renderFallbackLogo = () => (
-    <svg viewBox="0 0 100 100" className="w-full h-full">
+    <svg viewBox="0 0 100 100" className="h-full aspect-square" role="img" aria-label="SpenFel Digital Systems">
+      <circle cx="50" cy="50" r="48" fill="#0A1F44" />
       <path
-        d="M 10 80 L 10 20 L 30 50 L 50 20 L 70 50 L 90 20 L 90 80"
+        d="M 68 34 C 64 28 57 25 50 25 C 40 25 33 31 33 39 C 33 48 42 50 51 52 C 60 54 67 57 67 66 C 67 74 59 79 49 79 C 41 79 34 76 30 70"
         fill="none"
-        stroke="#0A1F44"
+        stroke="#16A34A"
         strokeWidth="8"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M 20 70 L 35 40 L 50 70 L 65 40 L 80 70"
+        d="M 62 52 L 78 52 M 70 44 L 78 52 L 70 60"
         fill="none"
-        stroke="#16A34A"
+        stroke="#FFFFFF"
         strokeWidth="5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -31,17 +34,17 @@ const Logo = ({ size = 'md' }) => {
   );
 
   return (
-    <div className={`relative ${sizeClasses[size] || sizeClasses.md}`}>
+    <div className={`relative shrink-0 ${height}`}>
       <img 
         src="/logo.png" 
-        alt="MW265 Logo" 
-        className={`${sizeClasses[size] || sizeClasses.md} object-contain`}
+        alt="SpenFel Digital Systems logo" 
+        className={`${height} w-auto rounded-lg object-contain`}
         onError={(e) => {
           e.target.style.display = 'none';
           e.target.nextElementSibling.style.display = 'block';
         }}
       />
-      <div style={{ display: 'none' }}>
+      <div style={{ display: 'none' }} className="h-full">
         {renderFallbackLogo()}
       </div>
     </div>
