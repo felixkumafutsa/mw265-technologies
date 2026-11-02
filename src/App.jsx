@@ -14,12 +14,7 @@ import RegistrationModal from './components/RegistrationModal';
 
 // Portfolio imports
 import PortfolioNav from './portfolio/components/Navigation';
-import PortfolioHero from './portfolio/sections/Hero';
-import PortfolioAbout from './portfolio/sections/About';
-import PortfolioSkills from './portfolio/sections/Skills';
-import PortfolioProjects from './portfolio/sections/Projects';
-import PortfolioExperience from './portfolio/sections/Experience';
-import PortfolioContact from './portfolio/sections/Contact';
+import ProfileSheet from './portfolio/sections/ProfileSheet';
 import PortfolioFooter from './portfolio/components/Footer';
 import Blog from './portfolio/sections/Blog';
 import BlogPost from './portfolio/components/BlogPost';
@@ -73,8 +68,8 @@ function PortfolioSite() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/portfolio' && location.hash) {
-      const element = document.querySelector(location.hash);
+    if (/^\/portfolio\/?$/.test(location.pathname) && location.hash) {
+      const element = document.getElementById(decodeURIComponent(location.hash.slice(1)));
       if (element) {
         setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
@@ -83,21 +78,15 @@ function PortfolioSite() {
     }
   }, [location]);
 
+  if (/^\/portfolio\/?$/.test(location.pathname)) {
+    return <ProfileSheet />;
+  }
+
   return (
     <div className="min-h-screen bg-dark flex flex-col">
       <PortfolioNav />
       <main className="flex-grow">
         <Routes>
-          <Route path="/" element={
-            <>
-              <PortfolioHero />
-              <PortfolioAbout />
-              <PortfolioSkills />
-              <PortfolioProjects />
-              <PortfolioExperience />
-              <PortfolioContact />
-            </>
-          } />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
         </Routes>
