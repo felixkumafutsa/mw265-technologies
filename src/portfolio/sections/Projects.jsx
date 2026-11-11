@@ -59,28 +59,19 @@ const Projects = () => {
         </div>
 
         <div className="flex space-x-4">
-          <motion.a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200"
-          >
-            <FaGithub className="w-5 h-5" />
-            <span className="text-sm">Code</span>
-          </motion.a>
-          <motion.a
-            href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200"
-          >
-            <FaExternalLinkAlt className="w-4 h-4" />
-            <span className="text-sm">Demo</span>
-          </motion.a>
+          {project.demo && (
+            <motion.a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200"
+            >
+              <FaExternalLinkAlt className="w-4 h-4" />
+              <span className="text-sm">Demo</span>
+            </motion.a>
+          )}
         </div>
       </div>
     </motion.div>

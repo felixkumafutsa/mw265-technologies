@@ -18,13 +18,13 @@ const Portfolio = () => {
           className="mb-14 max-w-3xl"
         >
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-green">
-            Selected work
+            Our products
           </p>
           <h2 className="mb-4 text-4xl font-bold text-gradient md:text-5xl">
-            Projects
+            Products
           </h2>
           <p className="text-lg leading-relaxed text-white/75 md:text-xl">
-            Selected projects from Felix Kumafutsa’s portfolio.
+            Products developed by us.
           </p>
         </motion.div>
 
@@ -39,12 +39,23 @@ const Portfolio = () => {
               className="glass-card group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10"
             >
               <div className="relative h-48 overflow-hidden bg-navy-light">
-                <img
-                  src={project.image}
-                  alt=""
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                />
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt=""
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                ) : (
+                  <div
+                    aria-hidden="true"
+                    className="flex h-full items-center justify-center bg-gradient-to-br from-green/20 via-navy-light to-navy-dark px-6 text-center"
+                  >
+                    <span className="text-sm font-semibold uppercase tracking-[0.2em] text-green-light">
+                      SpenFel Digital Systems
+                    </span>
+                  </div>
+                )}
                 <div
                   aria-hidden="true"
                   className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-transparent to-transparent"
@@ -71,16 +82,6 @@ const Portfolio = () => {
                 </ul>
 
                 <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/10 pt-4">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-semibold text-green-light transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
-                    >
-                      Source code <span aria-hidden="true">↗</span>
-                    </a>
-                  )}
                   {project.demo && (
                     <a
                       href={project.demo}

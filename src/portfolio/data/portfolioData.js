@@ -67,6 +67,43 @@ export const portfolioData = {
 
   projects: [
     {
+      id: "hospital-management-saas",
+      title: "Hospital Management System SaaS",
+      description: "A cloud-based platform designed to help healthcare providers manage day-to-day hospital operations and patient information.",
+      technologies: ["SaaS", "Healthcare"],
+      demo: "https://betterlife-web.vercel.app/",
+      image: null
+    },
+    {
+      id: "intelligent-school-management-saas",
+      title: "Intelligent School Management System SaaS",
+      description: "A cloud-based school administration platform designed to connect school operations, student information, and communication in one system.",
+      technologies: ["SaaS", "Education"],
+      demo: "https://intelligent-school-management-syste.vercel.app/",
+      image: null
+    },
+    {
+      id: "technical-skills-and-innovation-lab",
+      title: "Technical Skills and Innovation Lab",
+      description: "A hands-on learning and innovation space focused on developing practical technical skills through training, experimentation, and project-based work.",
+      technologies: ["Technical Training", "Innovation", "STEM"],
+      image: null
+    },
+    {
+      id: "saferide-malawi",
+      title: "SafeRide Malawi",
+      description: "A mobility and transport safety product for Malawi, designed to make safer, more reliable rides easier to access.",
+      technologies: ["Mobility", "Transport", "Safety"],
+      image: null
+    },
+    {
+      id: "learning-and-teaching-companion",
+      title: "Learning and Teaching Companion",
+      description: "A digital companion supporting teaching and learning activities, helping educators and learners stay organized and connected.",
+      technologies: ["Education", "Learning Tools"],
+      image: null
+    },
+    {
       id: 1,
       title: "MedCard Medical RFID System",
       description: "Secure medical identification system using RFID technology for patient tracking and medical record management.",
@@ -90,7 +127,7 @@ export const portfolioData = {
       description: "Agricultural inputs management system for renting farming equipment, seeds, and fertilizers with inventory tracking and farmer verification.",
       technologies: ["React", "Node.js", "MongoDB", "Stripe API", "Geolocation", "SMS Integration"],
       github: "https://github.com/felixkumafutsa",
-      demo: "https://felixkumafutsa.github.io",
+      demo: "https://smart-farm-frontend.vercel.app/",
       image: "/portfolio/images/projects/farmrent.png"
     },
     {
