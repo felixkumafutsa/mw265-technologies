@@ -36,7 +36,7 @@ const Logo = ({ size = 'md' }) => {
   return (
     <div className={`relative shrink-0 ${height}`}>
       <img 
-        src="/logo.png" 
+        src="/portfolio/images/projects/SpenFel Digital Systems Logo.png"
         alt="SpenFel Digital Systems logo" 
         className={`${height} w-auto rounded-lg object-contain`}
         onError={(e) => {

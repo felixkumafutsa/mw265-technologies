@@ -72,7 +72,7 @@ export const portfolioData = {
       description: "A cloud-based platform designed to help healthcare providers manage day-to-day hospital operations and patient information.",
       technologies: ["SaaS", "Healthcare"],
       demo: "https://betterlife-web.vercel.app/",
-      image: null
+      image: "/portfolio/images/projects/SpenFel Hospital Management System Banner.png"
     },
     {
       id: "intelligent-school-management-saas",
@@ -87,7 +87,7 @@ export const portfolioData = {
       title: "Technical Skills and Innovation Lab",
       description: "A hands-on learning and innovation space focused on developing practical technical skills through training, experimentation, and project-based work.",
       technologies: ["Technical Training", "Innovation", "STEM"],
-      image: null
+      image: "/portfolio/images/projects/SpenFel Technical Skills Lab.png"
     },
     {
       id: "saferide-malawi",

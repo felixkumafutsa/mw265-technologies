@@ -1,13 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import heroBanner from '../../SpenFel Digital Systems Hero Banner.png';
 
 const Hero = ({ onGetStarted }) => {
   return (
     <section id="hero" className="relative min-h-screen flex items-end justify-center px-4 pt-24 pb-8 overflow-hidden lg:items-center lg:pb-20">
       <motion.img
-        src={heroBanner}
+        src="/portfolio/images/projects/SpenFel Digital Systems Hero Banner.png"
         alt=""
         aria-hidden="true"
         initial={{ opacity: 0 }}
