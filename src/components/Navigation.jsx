@@ -1,108 +1,92 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
+
+const navLinks = [
+  { name: 'Home', href: '#hero' },
+  { name: 'Services', href: '#services' },
+  { name: 'Industries', href: '#industries' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'About', href: '#about' },
+  { name: 'Contact', href: '#contact' },
+];
 
 const Navigation = ({ onGetStarted }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setIsMobileMenuOpen(false);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
-  const navLinks = [
-    { name: 'Home', href: '#hero' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
-  ];
+  const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
+      aria-label="Main navigation"
+      initial={reduceMotion ? false : { y: -24 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass-dark py-3' : 'py-5'
-      }`}
+      transition={{ duration: 0.35 }}
+      className={`sds-nav ${isScrolled ? 'sds-nav--scrolled' : ''}`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-3"
-          >
-            <Logo size="lg" />
-            <span className="text-xl font-bold text-white">SpenFel Digital Systems</span>
-          </motion.div>
+      <div className="sds-nav__inner">
+        <a className="sds-brand" href="#hero" onClick={closeMenu} aria-label="SpenFel Digital Systems home">
+          <Logo size="sm" />
+          <span className="sds-brand__name">SpenFel <b>Digital Systems</b></span>
+        </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <motion.a
-                key={link.name}
-                href={link.href}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="text-white/80 hover:text-white transition-colors font-medium"
-              >
-                {link.name}
-              </motion.a>
-            ))}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={onGetStarted}
-              className="px-6 py-2 bg-green hover:bg-green-light text-white font-semibold rounded-full neon-glow transition-all"
-            >
-              Get Started
-            </motion.button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+        <div className="sds-nav__desktop">
+          {navLinks.map((link) => (
+            <a key={link.name} href={link.href} className="sds-nav__link">{link.name}</a>
+          ))}
+          <button className="sds-nav__cta" type="button" onClick={onGetStarted}>Let&apos;s talk <span aria-hidden="true">↗</span></button>
         </div>
+
+        <button
+          type="button"
+          className="sds-nav__toggle"
+          aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="sds-mobile-menu"
+          onClick={() => setIsMobileMenuOpen((open) => !open)}
+        >
+          {isMobileMenuOpen ? <X size={21} aria-hidden="true" /> : <Menu size={21} aria-hidden="true" />}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
+            id="sds-mobile-menu"
+            initial={reduceMotion ? false : { opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-dark mt-4 mx-4 rounded-2xl overflow-hidden"
+            exit={reduceMotion ? undefined : { opacity: 0, height: 0 }}
+            className="sds-nav__mobile"
           >
-            <div className="p-6 flex flex-col gap-4">
+            <div className="sds-nav__mobile-inner">
               {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-white/80 hover:text-white transition-colors font-medium py-2"
-                >
-                  {link.name}
+                <a key={link.name} href={link.href} className="sds-nav__mobile-link" onClick={closeMenu}>
+                  {link.name}<span aria-hidden="true">↗</span>
                 </a>
               ))}
-              <button 
-                onClick={() => {
-                  onGetStarted();
-                  setIsMobileMenuOpen(false);
-                }}
-                className="px-6 py-3 bg-green hover:bg-green-light text-white font-semibold rounded-full neon-glow transition-all"
+              <button
+                className="sds-nav__mobile-cta"
+                type="button"
+                onClick={() => { closeMenu(); onGetStarted(); }}
               >
-                Get Started
+                Let&apos;s talk <span aria-hidden="true">↗</span>
               </button>
             </div>
           </motion.div>

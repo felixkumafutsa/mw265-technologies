@@ -1,54 +1,39 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import Logo from './Logo';
 
-const Footer = () => {
-  return (
-    <footer className="glass-dark py-12 px-4 mt-24">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row items-center justify-between gap-8"
-        >
-          <div className="flex items-center gap-4">
-            <Logo size="lg" />
-            <div>
-              <h3 className="text-2xl font-bold text-white">SpenFel Digital Systems</h3>
-              <p className="text-white/60">Building Malawi Through Technology</p>
-            </div>
-          </div>
-
-          <div className="flex gap-6">
-            {['Facebook', 'Twitter', 'LinkedIn', 'Instagram'].map((social) => (
-              <motion.a
-                key={social}
-                href="#"
-                whileHover={{ scale: 1.2, color: '#16A34A' }}
-                className="text-white/60 hover:text-green transition-colors"
-              >
-                {social}
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="border-t border-white/10 mt-8 pt-8 text-center"
-        >
-          <p className="text-white/60">
-            © {new Date().getFullYear()} SpenFel Digital Systems. All rights reserved.
-          </p>
-        </motion.div>
+const Footer = () => (
+  <footer className="sds-footer">
+    <div className="sds-container">
+      <div className="sds-footer__main">
+        <div className="sds-footer__brand">
+          <a className="sds-brand" href="#hero" aria-label="SpenFel Digital Systems home">
+            <Logo size="sm" />
+            <span className="sds-brand__name">SpenFel <b>Digital Systems</b></span>
+          </a>
+          <p>Intelligent technology. Digital systems. Built for real-world challenges.</p>
+        </div>
+        <div className="sds-footer__column">
+          <h2>Explore</h2>
+          <a href="#services">Services</a>
+          <a href="#industries">Industries</a>
+          <a href="#projects">Projects</a>
+          <a href="#about">About SDS</a>
+        </div>
+        <div className="sds-footer__column">
+          <h2>Get in touch</h2>
+          <a href="mailto:support@spenfeldigtal.com">support@spenfeldigtal.com</a>
+          <a href="tel:+265997473256">+265997473256</a>
+          <a href="https://wa.me/265997473256" target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={13} aria-hidden="true" /></a>
+          <span>Lilongwe, Malawi</span>
+        </div>
       </div>
-    </footer>
-  );
-};
+      <div className="sds-footer__bottom">
+        <span>© {new Date().getFullYear()} SpenFel Digital Systems</span>
+        <a href="#hero">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+);
 
 export default Footer;

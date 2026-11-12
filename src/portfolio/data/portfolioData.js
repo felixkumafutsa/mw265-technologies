@@ -131,17 +131,8 @@ export const portfolioData = {
       image: "/portfolio/images/projects/farmrent.png"
     },
     {
-      id: 4,
-      title: "CryptoSpeedX - Arbitrage Intelligence",
-      description: "Advanced crypto arbitrage intelligence platform that identifies and executes profitable trading opportunities across multiple exchanges in real-time.",
-      technologies: ["Python", "React", "WebSocket", "REST APIs", "PostgreSQL"],
-      github: "https://github.com/felixkumafutsa",
-      demo: "https://felixkumafutsa.github.io",
-      image: "/portfolio/images/projects/cryptospeedX.png"
-    },
-    {
       id: 5,
-      title: "MWCrypto Pay - Payment Settlement",
+      title: "SpenFel Crypto",
       description: "Crypto-based payment settlement system enabling seamless cross-border transactions without friction, allowing users to buy and sell goods/services globally using cryptocurrency.",
       technologies: ["Blockchain", "Node.js", "React", "Web3.js", "Smart Contracts", "MongoDB", "Stripe API"],
       github: "https://github.com/felixkumafutsa",

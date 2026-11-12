@@ -1,101 +1,48 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { Phone, MessageCircle, Mail, MapPin } from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 
-const Contact = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-
-  return (
-    <section id="contact" className="py-24 px-4 relative">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">
-            Get In Touch
-          </h2>
-          <p className="text-xl text-white/80">
-            Ready to start your project? Contact us today
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="glass-card p-8 md:p-16 rounded-3xl max-w-4xl mx-auto"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="glass p-6 rounded-2xl"
-            >
-              <Phone size={32} className="text-green mb-4" />
-              <h3 className="text-xl font-bold mb-2 text-white">Call Us</h3>
-              <p className="text-white/80 text-lg">+265 997 473 256</p>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="glass p-6 rounded-2xl"
-            >
-              <MessageCircle size={32} className="text-green mb-4" />
-              <h3 className="text-xl font-bold mb-2 text-white">WhatsApp</h3>
-              <p className="text-white/80 text-lg">+265 889 887 486</p>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="glass p-6 rounded-2xl"
-            >
-              <Mail size={32} className="text-green mb-4" />
-              <h3 className="text-xl font-bold mb-2 text-white">Email</h3>
-              <p className="text-white/80 text-lg">info@mw265.com</p>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="glass p-6 rounded-2xl"
-            >
-              <MapPin size={32} className="text-green mb-4" />
-              <h3 className="text-xl font-bold mb-2 text-white">Location</h3>
-              <p className="text-white/80 text-lg">Lilongwe, Malawi</p>
-            </motion.div>
+const Contact = ({ onGetStarted }) => (
+  <>
+    <section id="contact" className="sds-contact">
+      <div className="sds-contact__glow" aria-hidden="true" />
+      <div className="sds-container sds-contact__inner">
+        <div className="sds-contact__copy">
+          <p className="sds-eyebrow">Start a conversation</p>
+          <h2>Have a challenge<br />worth <em>solving?</em></h2>
+          <p>Let&apos;s turn your ideas into practical digital solutions.</p>
+          <div className="sds-contact__buttons">
+            <button type="button" className="sds-button sds-button--green" onClick={onGetStarted}>
+              Start a project <ArrowUpRight size={17} aria-hidden="true" />
+            </button>
+            <a href="mailto:support@spenfeldigtal.com" className="sds-button sds-button--light-outline">
+              Contact our team <Mail size={16} aria-hidden="true" />
+            </a>
           </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.a
-              href="tel:+265997473256"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-green hover:bg-green-light text-white font-bold rounded-full neon-glow transition-all flex items-center justify-center gap-2"
-            >
-              <Phone size={20} />
-              Call Now
-            </motion.a>
-            <motion.a
-              href="https://wa.me/265889887486"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-green hover:bg-green-light text-white font-bold rounded-full neon-glow transition-all flex items-center justify-center gap-2"
-            >
-              <MessageCircle size={20} />
-              WhatsApp Us
-            </motion.a>
+        </div>
+        <div className="sds-contact__details">
+          <a href="tel:+265997473256" className="sds-contact__item">
+            <span className="sds-contact__icon"><Phone size={18} aria-hidden="true" /></span>
+            <span><small>Call our team</small><strong>+265997473256</strong></span>
+            <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
+          <a href="https://wa.me/265997473256" target="_blank" rel="noopener noreferrer" className="sds-contact__item">
+            <span className="sds-contact__icon"><MessageCircle size={18} aria-hidden="true" /></span>
+            <span><small>WhatsApp</small><strong>+265997473256</strong></span>
+            <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
+          <a href="mailto:support@spenfeldigtal.com" className="sds-contact__item">
+            <span className="sds-contact__icon"><Mail size={18} aria-hidden="true" /></span>
+            <span><small>Email</small><strong>support@spenfeldigtal.com</strong></span>
+            <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
+          <div className="sds-contact__item sds-contact__item--location">
+            <span className="sds-contact__icon"><MapPin size={18} aria-hidden="true" /></span>
+            <span><small>Based in</small><strong>Lilongwe, Malawi</strong></span>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
-  );
-};
+  </>
+);
 
 export default Contact;
