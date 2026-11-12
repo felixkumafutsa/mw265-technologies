@@ -146,7 +146,6 @@ const Portfolio = () => {
   );
   const [activeIndex, setActiveIndex] = useState(0);
   const [autoPaused, setAutoPaused] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
   const [focusWithin, setFocusWithin] = useState(false);
   const [interactionPaused, setInteractionPaused] = useState(false);
   const [documentVisible, setDocumentVisible] = useState(() => typeof document === 'undefined' || !document.hidden);
@@ -216,12 +215,12 @@ const Portfolio = () => {
   }, []);
 
   useEffect(() => {
-    if (prefersReducedMotion || autoPaused || isHovering || focusWithin || interactionPaused || !documentVisible) return undefined;
+    if (prefersReducedMotion || autoPaused || focusWithin || interactionPaused || !documentVisible) return undefined;
     const interval = window.setInterval(() => {
       scrollToSlide((activeIndex + 1) % projects.length);
     }, 6200);
     return () => window.clearInterval(interval);
-  }, [activeIndex, autoPaused, documentVisible, focusWithin, interactionPaused, isHovering, prefersReducedMotion]);
+  }, [activeIndex, autoPaused, documentVisible, focusWithin, interactionPaused, prefersReducedMotion]);
 
   const handleScroll = () => {
     if (scrollFrameRef.current) window.cancelAnimationFrame(scrollFrameRef.current);
@@ -229,7 +228,11 @@ const Portfolio = () => {
   };
 
   const handleBlur = (event) => {
-    if (!event.currentTarget.contains(event.relatedTarget)) setFocusWithin(false);
+    if (!carouselRef.current?.contains(event.relatedTarget)) setFocusWithin(false);
+  };
+
+  const handleFocus = (event) => {
+    if (carouselRef.current?.contains(event.target)) setFocusWithin(true);
   };
 
   return (
@@ -250,9 +253,7 @@ const Portfolio = () => {
           aria-label={`Selected projects, ${projects.length} slides`}
           onWheel={pauseAfterInteraction}
           onPointerDown={pauseAfterInteraction}
-          onPointerEnter={(event) => { if (event.pointerType !== 'touch') setIsHovering(true); }}
-          onPointerLeave={() => setIsHovering(false)}
-          onFocus={() => setFocusWithin(true)}
+          onFocus={handleFocus}
           onBlur={handleBlur}
           onKeyDown={(event) => {
             if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') pauseAfterInteraction();
@@ -271,7 +272,13 @@ const Portfolio = () => {
                 type="button"
                 className="sds-project-carousel__button sds-project-carousel__toggle"
                 aria-controls="sds-project-rail"
-                onClick={() => setAutoPaused((paused) => !paused)}
+                onClick={() => {
+                  if (autoPaused) {
+                    window.clearTimeout(interactionTimerRef.current);
+                    setInteractionPaused(false);
+                  }
+                  setAutoPaused((paused) => !paused);
+                }}
                 disabled={prefersReducedMotion}
                 aria-label={prefersReducedMotion ? 'Automatic scrolling disabled by reduced motion preference' : autoPaused ? 'Resume automatic scrolling' : 'Pause automatic scrolling'}
                 aria-pressed={autoPaused}
