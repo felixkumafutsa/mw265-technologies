@@ -87,6 +87,7 @@ export const portfolioData = {
       title: "Technical Skills and Innovation Lab",
       description: "A hands-on learning and innovation space focused on developing practical technical skills through training, experimentation, and project-based work.",
       technologies: ["Technical Training", "Innovation", "STEM"],
+      demo: "https://iil-iota.vercel.app/",
       image: "/portfolio/images/projects/SpenFel Technical Skills Lab.png"
     },
     {
@@ -127,7 +128,7 @@ export const portfolioData = {
       description: "Agricultural inputs management system for renting farming equipment, seeds, and fertilizers with inventory tracking and farmer verification.",
       technologies: ["React", "Node.js", "MongoDB", "Stripe API", "Geolocation", "SMS Integration"],
       github: "https://github.com/felixkumafutsa",
-      demo: "https://smart-farm-frontend.vercel.app/",
+      demo: "https://farmrent-frontend.vercel.app/",
       image: "/portfolio/images/projects/farmrent.png"
     },
     {
@@ -136,7 +137,7 @@ export const portfolioData = {
       description: "Crypto-based payment settlement system enabling seamless cross-border transactions without friction, allowing users to buy and sell goods/services globally using cryptocurrency.",
       technologies: ["Blockchain", "Node.js", "React", "Web3.js", "Smart Contracts", "MongoDB", "Stripe API"],
       github: "https://github.com/felixkumafutsa",
-      demo: "https://felixkumafutsa.github.io",
+      demo: "https://cryptomw265-frontend.vercel.app/",
       image: "/portfolio/images/projects/mwcryptopay.png"
     },
     {
@@ -163,7 +164,7 @@ export const portfolioData = {
       description: "Universal IoT gateway platform enabling users to connect and monitor various IoT devices through a centralized dashboard with real-time data visualization and alert management.",
       technologies: ["Raspberry Pi", "MQTT Broker", "React", "Node.js", "WebSocket", "PostgreSQL", "Docker", "REST API"],
       github: "https://github.com/felixkumafutsa",
-      demo: "https://felixkumafutsa.github.io",
+      demo: "https://smart-farm-frontend.vercel.app/",
       image: "/portfolio/images/projects/iot monitoring gateway.png"
     },
     {

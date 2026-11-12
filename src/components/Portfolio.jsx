@@ -112,9 +112,11 @@ function ProjectCard({ project, index, active, setSlideRef }) {
     >
       <ProjectImage project={project} index={index} />
       <div className="sds-project-card__content">
-        <p className={`sds-project-card__type${isSpenFelProduct ? '' : ' sds-project-card__type--individual'}`}>
-          <span>{project.category}</span> <i aria-hidden="true">/</i> {project.type}
-        </p>
+        {isSpenFelProduct && (
+          <p className="sds-project-card__type">
+            <span>{project.category}</span> <i aria-hidden="true">/</i> {project.type}
+          </p>
+        )}
         <h3>{project.id === 'technical-skills-and-innovation-lab' ? 'Technical Skills & Innovations Lab' : project.title}</h3>
         <p className="sds-project-card__description">{project.description}</p>
         <div className="sds-project-card__footer">
