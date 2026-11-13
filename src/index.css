@@ -2806,11 +2806,29 @@ a.sds-contact__item:hover > svg {
 
 .sds-site .sds-project-card__image {
   aspect-ratio: 1.68;
-  background: #e7edf3;
+  overflow: hidden;
+  border-radius: 3px;
+  background:
+    linear-gradient(rgba(7,27,58,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7,27,58,.035) 1px, transparent 1px),
+    radial-gradient(circle at 82% 18%, rgba(7,139,69,.12), transparent 34%),
+    linear-gradient(135deg, #e1eee7, #d7e2e8);
+  background-size: 24px 24px, 24px 24px, auto, auto;
+  box-shadow: inset 0 0 0 1px rgba(7,27,58,.08);
 }
 
 .sds-site .sds-project-card__image img {
   display: block;
+  width: 100%;
+  height: 100%;
+  padding: clamp(12px, 1.4vw, 18px);
+  box-sizing: border-box;
+  object-fit: contain;
+  transform: none;
+}
+
+.sds-site .sds-project-card:hover .sds-project-card__image img {
+  transform: none;
 }
 
 .sds-site .sds-project-card__image--placeholder {
@@ -3282,6 +3300,12 @@ a.sds-contact__item:hover > svg {
   .sds-site .sds-project-card__content {
     min-height: 244px;
     padding: 15px 15px 13px;
+  }
+
+  .sds-site .sds-project-card__type {
+    min-height: 42px;
+    font-size: 10px;
+    line-height: 1.4;
   }
 
   .sds-site .sds-project-art {

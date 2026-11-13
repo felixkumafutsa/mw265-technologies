@@ -11,40 +11,65 @@ const productOrder = [
   'learning-and-teaching-companion',
 ];
 
-const productTypes = {
+const projectTypes = {
   'technical-skills-and-innovation-lab': 'Technical learning initiative',
   'hospital-management-saas': 'Digital healthcare solution',
   'intelligent-school-management-saas': 'Education platform',
   'saferide-malawi': 'Mobility and safety product',
   'learning-and-teaching-companion': 'Learning tool',
+  '1': 'Medical RFID system',
+  '2': 'Enterprise audit platform',
+  '3': 'Agricultural rental platform',
+  '5': 'Digital payments platform',
+  '6': 'Solar energy monitoring system',
+  '7': 'Smart waste management',
+  '8': 'IoT monitoring platform',
+  '9': 'Biometric attendance system',
 };
 
 const productCoverImages = {
-  'intelligent-school-management-saas': '/portfolio/images/projects/spenfel-school-management.png',
-  'saferide-malawi': '/portfolio/images/projects/spenfel-saferide.png',
-  'learning-and-teaching-companion': '/portfolio/images/projects/spenfel-learning-companion.png',
+  'technical-skills-and-innovation-lab': '/portfolio/images/projects/cover-technical-skills-innovation-lab.png',
+  'hospital-management-saas': '/portfolio/images/projects/cover-hospital-management-saas.png',
+  'intelligent-school-management-saas': '/portfolio/images/projects/cover-intelligent-school-management-saas.png',
+  'saferide-malawi': '/portfolio/images/projects/cover-saferide-malawi.png',
+  'learning-and-teaching-companion': '/portfolio/images/projects/cover-learning-teaching-companion.png',
+  1: '/portfolio/images/projects/cover-medcard-rfid-system.png',
+  2: '/portfolio/images/projects/cover-auditsoft-enterprise.png',
+  3: '/portfolio/images/projects/cover-farm-inputs-rental-platform.png',
+  5: '/portfolio/images/projects/cover-spenfel-crypto.png',
+  6: '/portfolio/images/projects/cover-solar-monitoring-system.png',
+  7: '/portfolio/images/projects/cover-iot-smartbin-system.png',
+  8: '/portfolio/images/projects/cover-iot-monitoring-gateway.png',
+  9: '/portfolio/images/projects/cover-fingerprint-attendance-system.png',
 };
 
 const products = productOrder
   .map((id) => portfolioData.projects.find((project) => project.id === id))
   .filter(Boolean);
 const previousProjects = portfolioData.projects.slice(5);
-const projects = [
-  ...products.map((project) => ({
+const projects = [...products, ...previousProjects].map((project) => ({
     ...project,
     image: productCoverImages[project.id] || project.image,
     category: 'SpenFel product',
-    type: productTypes[project.id],
-  })),
-  ...previousProjects.map((project) => ({ ...project, category: 'Earlier individual project', type: 'Felix Kumafutsa · portfolio work' })),
-];
+    type: projectTypes[project.id],
+  }));
 
 function ProjectImage({ project, index }) {
   const [imageStatus, setImageStatus] = useState(project.image ? 'loading' : 'missing');
   const imageDescriptions = {
+    'technical-skills-and-innovation-lab': 'Students exploring hands-on technical projects in the innovation lab',
+    'hospital-management-saas': 'Healthcare professional using the hospital management system',
     'intelligent-school-management-saas': 'School administration dashboard with student, attendance, and class summaries',
     'saferide-malawi': 'SafeRide Malawi ride interface with pickup, destination, and vehicle details',
     'learning-and-teaching-companion': 'Learning dashboard with lesson details, progress, and a class schedule',
+    1: 'MedCard medical identification icon for the RFID patient system',
+    2: 'AuditSoft enterprise audit shield and analytics symbol',
+    3: 'Farm inputs rental platform with equipment listings and farmer services',
+    5: 'SpenFel Crypto payment app with cryptocurrency settlement',
+    6: 'Solar power monitoring dashboard with energy production data',
+    7: 'SmartBin fill-level dashboard for connected waste collection',
+    8: 'IoT monitoring gateway with connected device dashboard',
+    9: 'Fingerprint attendance reader and biometric monitoring dashboard',
   };
 
   if (project.image) {
@@ -98,7 +123,7 @@ function ProjectImage({ project, index }) {
 
 function ProjectCard({ project, index, active, setSlideRef }) {
   const hasDemo = Boolean(project.demo);
-  const isSpenFelProduct = project.category === 'SpenFel product';
+  const isFeaturedProduct = productOrder.includes(project.id);
 
   return (
     <article
@@ -112,17 +137,15 @@ function ProjectCard({ project, index, active, setSlideRef }) {
     >
       <ProjectImage project={project} index={index} />
       <div className="sds-project-card__content">
-        {isSpenFelProduct && (
-          <p className="sds-project-card__type">
-            <span>{project.category}</span> <i aria-hidden="true">/</i> {project.type}
-          </p>
-        )}
-        <h3>{project.id === 'technical-skills-and-innovation-lab' ? 'Technical Skills & Innovations Lab' : project.title}</h3>
+        <p className="sds-project-card__type">
+          <span>{project.category}</span> <i aria-hidden="true">/</i> {project.type}
+        </p>
+        <h3>{project.title}</h3>
         <p className="sds-project-card__description">{project.description}</p>
         <div className="sds-project-card__footer">
           {hasDemo ? (
             <a className="sds-project-card__link" href={project.demo} target="_blank" rel="noopener noreferrer">
-              {isSpenFelProduct ? 'Explore product' : 'View project'}
+              {isFeaturedProduct ? 'Explore product' : 'View project'}
               <ExternalLink size={14} aria-hidden="true" />
             </a>
           ) : (
@@ -245,7 +268,7 @@ const Portfolio = () => {
             <p className="sds-eyebrow sds-eyebrow--dark">Selected work</p>
             <h2>Innovation<br /><em>in action.</em></h2>
           </div>
-          <p>Five SpenFel initiatives and earlier individual work, brought together in one considered view. Each card is clearly attributed to its origin.</p>
+          <p>Digital products and systems spanning education, healthcare, mobility, payments and connected infrastructure.</p>
         </div>
 
         <div
@@ -264,7 +287,7 @@ const Portfolio = () => {
           <div className="sds-project-carousel__heading">
             <div>
               <span className="sds-project-carousel__label">Projects &amp; initiatives</span>
-              <p>Company products first, followed by Felix Kumafutsa&apos;s earlier portfolio work.</p>
+              <p>Products and systems developed by SpenFel Digital Systems.</p>
             </div>
             <div className="sds-project-carousel__controls" role="group" aria-label="Project carousel controls">
               <span className="sds-project-carousel__count" aria-live="off">
